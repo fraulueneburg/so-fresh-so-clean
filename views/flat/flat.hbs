@@ -1,0 +1,38 @@
+<section>
+  <h1 class="profile-header">
+    {{#if userFromSession.ImgUrl}}<img src="{{userFromSession.ImgUrl}}" alt="" width="120" height="120" />{{/if}}
+    Welcome, {{userFromSession.name}}
+  </h1>
+</section>
+
+<section>
+  <h2>Your Flats</h2>
+  {{#if allFlats}}
+    <ul class="list-flats">
+      {{#each allFlats}}
+        <li><a href="/flat/{{_id}}">{{name}}</a></li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>You are currently not in any flats</p>
+  {{/if}}
+
+</section>
+
+<section>
+  <h2>Create a new flat</h2>
+  <form action="/create-flat" method="post">
+    <label for="flatName">Flat name</label>
+    <input type="text" name="flatName" placeholder="choose something cool" required />
+    <label for="flatmembers">Choose flatmates</label>
+    <select name="flatMembers" id="flatmembers" multiple>
+      {{#each allUsers}}
+        <option value="{{_id}}">{{username}}</option>
+      {{/each}}
+    </select>
+    <button>Create flat</button>
+  </form>
+  {{#if error}}
+    {{error}}
+  {{/if}}
+</section>

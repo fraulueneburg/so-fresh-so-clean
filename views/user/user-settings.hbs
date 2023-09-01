@@ -1,0 +1,24 @@
+<section>
+    <h1 class="profile-header">
+        {{#if currentUser.ImgUrl}}<a href="/flat"><img src="{{currentUser.ImgUrl}}" alt="" width="120" height="120" /></a>{{/if}}
+        Welcome, {{currentUser.username}}
+    </h1>
+</section>
+<section>
+    <h2>Update your Profile</h2>
+    <form action="/user/{{currentUser._id}}/update" method="post" enctype="multipart/form-data">
+    <label for="username">Your name</label>
+    <input type="text" name="userName" id="username" value="{{currentUser.username}}" />
+    <label for="email">Your email</label>
+    <input type="email" name="emailAddress" value="{{currentUser.email}}" />
+    <div class="">
+        <label for="">Update your profile picture:</label>
+        <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+    </div>
+    <input type="submit" value="Update Profile" />
+    </form>
+    {{#if error}}
+    {{error}}
+    {{/if}}
+    <a href="/user/{{currentUser._id}}/delete" class="btn btn-primary">delete your account</a>
+</section>

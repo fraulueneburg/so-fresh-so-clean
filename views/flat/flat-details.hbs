@@ -1,0 +1,150 @@
+<section>
+    <h1 class="profile-header">
+        {{#if userFromSession.ImgUrl}}
+            <a href="/flat"><img src="{{userFromSession.ImgUrl}}" alt="" width="120" height="120" /></a>
+        {{/if}}
+        Welcome, {{userFromSession.name}} {{#if userIsAdmin}}<span class="is-admin">ADMIN</span>{{/if}}
+    </h1>
+</section>
+<section>
+    <h2 class="edit-mode-hidden">Your current flat:</h2>
+    {{#if flat}}
+        <p class="edit-mode-hidden">{{flat.name}}</p>
+        <form class="edit-mode-show" action="/flat/{{flat._id}}/update" method="post">
+            <h2>New flatname:</h2>
+            <input type="text" name="name" value="{{flat.name}}" required>
+            <button>Update flatname</button>
+        </form>
+        <form class="edit-mode-show delete-flat" action="/flat/{{flat._id}}/delete" method="post">
+            <button type="submit" class="btn btn-primary btn-delete-flat">delete flat</button>
+        </form>
+        <span class="edit-mode-hidden">👉 <a href="/flat">see all your flats</a></span>
+    {{else}}
+        <p>You are currently in no flat</p>
+    {{/if}}
+</section>
+{{#if flat}}
+<section class="edit-mode-show">
+    <form action="/flat/{{flat._id}}/update/owner/{{userFromSession.id}}" method="post">
+        <h2>Assign new flat admin:</h2>
+        <select name="flatMembers" required>
+            <option value="placeholder" disabled selected hidden>select person</option>
+            {{#each flat.users}}
+                <option value="{{id}}">{{username}}</option>
+            {{/each}}
+        </select>
+        <button type="submit" class="btn">update admin</button>
+    </form>
+</section>
+{{/if}}
+<section>
+    <h2>Your flatmates:</h2>
+        <ul class="list-flatmates unstyled">
+           {{#each flat.users}}
+                <li>
+                    <figure class="user">
+                        {{#if ImgUrl}}
+                            <img src="{{ImgUrl}}" alt="{{username}}" />
+                        {{else}}
+                            <img src="/images/sad-puppy.jpg" alt="{{username}}" />
+                        {{/if}}
+                        <figcaption class="name">{{username}}</figcaption>
+                    </figure>
+                    <form class="edit-mode-show delete-flatmate" action="/flat/{{../flat._id}}/user/{{_id}}/delete" method="post">
+                        <button type="submit" class="btn btn-delete-flatmate">delete flatmate</button>
+                    </form>
+                </li>
+            {{/each}}
+            <li class="edit-mode-show"><a href="/flat/{{flat._id}}/add-flatmate" class="btn btn-add-flatmate">add flatmate</a></li>
+        </ul>
+</section>
+<section>
+    <h2>This week’s tasks:</h2>
+    {{#if updatedTasks}}
+        <div class="card">
+            {{#if hasOverdueTasks}}
+                <div class="text">
+                    <p>
+                        <strong style="text-transform: uppercase">{{userFromSession.name}}!</strong> ☝️
+                    </p>
+                    <p>
+                        It’s the weekend and you haven’t completed your tasks yet (we’re not angry, we’re just disappointed).
+                    </p>
+                    <p>
+                        But please do it soon or this baby animal is going to be very sad:
+                    </p>
+                </div>
+                <img src="/images/sad-kitten.jpg" width="185" height="185" />
+            {{else}}
+                <div class="text">
+                    <p>
+                        Hey {{userFromSession.name}},
+                    </p>
+                    <p>
+                        great job this week – you’re not behind on any tasks (yet). How about some fun reading then?
+                    </p>
+                    <p>
+                        These <a href="https://www.mollymaid.com/practically-spotless/2016/march/ultimate-q-tips-cleaning-tips/">5 great cleaning tipps involving Q-tips</a><br>
+                        will blow your mind, we promise!<br>
+                        Let that flat sparkle! ✨
+                    </p>
+                </div>
+                <img src="/images/thumbsup.jpg" width="220" height="220" />
+            {{/if}}
+        </div>
+        <ul class="list-tasks">
+            {{#each updatedTasks}}
+                <li>
+                    <figure class="user">
+                        {{#if user.ImgUrl}}
+                            <img src="{{user.ImgUrl}}" alt="{{username}}" />
+                        {{else}}
+                            <img src="/images/sad-mini-pig.jpg" alt="{{username}}" />
+                        {{/if}}
+                        <figcaption class="name">{{this.user.username}}</figcaption>
+                    </figure>
+                    <p class="task">
+                        <strong>{{this.name}}</strong><br>
+                        <small>{{this.description}}</small>
+                     </p>
+                    <form class="edit-mode-show delete-task" action="/flat/{{../flat._id}}/task/{{_id}}/delete" method="post">
+                        <button type="submit" class="btn btn-primary">delete task</button>
+                    </form>
+                    <div class="status">
+                        {{#if isOwner}}
+                                <form action="/flat/{{../flat._id}}/task/{{_id}}/update" method="post">
+                                {{#if this.isDone}}
+                                    <button class="btn btn-update-task btn-tertiary">Done ✅</button>
+                                {{else}}
+                                    <button class="btn btn-update-task">undone 🔲</button>
+                                {{/if}}
+                            </form>
+                        {{else}}
+                            {{#if this.isDone}}
+                                <div class="task-status">✅</div>
+                            {{else}}
+                                <div class="task-status">🔲</div>
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                </li>
+            {{/each}} 
+        </ul>
+    {{else}}
+        <p>No tasks yet.</p>
+    {{/if}}
+</section>
+<section class="add-task">
+    <h2>Add task</h2>
+    <form action="/flat/{{flat._id}}" method="post">
+        <input type="text" name="taskname" value="" placeholder="Name" required>
+        <input type="text" name="taskdescription" value="" placeholder="Description">
+        <select name="taskuser" required>
+            <option value="{{flat.owner._id}}" selected hidden>assign to flatmate</option>
+            {{#each flat.users}}
+                <option value="{{id}}">{{username}}</option>
+            {{/each}}
+        </select>
+        <button>add task</button>
+    </form>
+</section>
