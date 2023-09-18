@@ -22,7 +22,6 @@ Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/Ron
 - <span aria-hidden="true">🧼&nbsp;&nbsp; </span>add, update and delete your flatmates
 - <span aria-hidden="true">🤩&nbsp;&nbsp; </span>create tasks that automatically repeat every week
 - <span aria-hidden="true">✅&nbsp;&nbsp; </span>keep track of completed/uncompleted tasks
-
 - <span aria-hidden="true">😿&nbsp;&nbsp; </span>BONUS: A passive-aggressive message and a sad baby animal shame you about due/missed tasks
 - <span aria-hidden="true">👌&nbsp;&nbsp; </span>BONUS: If you did complete your tasks on time, you will get a random cleaning tip.
 
