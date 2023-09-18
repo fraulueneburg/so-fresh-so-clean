@@ -8,9 +8,11 @@
 
 ## Introduction
 
-Why build something cool and fun when you can build something truly evil? That’s what my project partner, [Ronny Skaraboto](https://github.com/RonnySk) and I asked ourselves when planning our second app project during the Ironhack 2023 Web Development Bootcamp. So we built the thing that made everyone think we were <em>so</em> not fun: A cleaning app for shared flats! Complete with all the CRUD operations and a special bonus feature: If you didn’t complete your tasks on time, you get a passive-agressive message with a sad animal.
+Why build something cool and fun when you can build something truly evil? That’s what my project partner, [Ronny Skaraboto](https://github.com/RonnySk) and I asked ourselves when planning our second app project during the Ironhack 2023 Web Development Bootcamp.
 
-Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/RonnySk)
+So we built the thing that made everyone think we were <u><strong>so</strong></u> not fun: A cleaning app for shared flats! Complete with all the CRUD operations and a special bonus feature: If you didn’t complete your tasks on time, a passive-agressive message with a sad baby animal will shame you (we sincerely wish this one wasn’t based on a true story).
+
+Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/RonnySk), basically the Mister Clean of Node.js.
 
 ## Features
 
