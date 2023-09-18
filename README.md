@@ -1,4 +1,4 @@
-![Screenshot of the So Fresh So Clean Web App](https://github.com/fraulueneburg/so-fresh-so-clean/assets/122455194/421716cd-ff7c-4073-8cda-cd6e20c341cd)
+![Screenshot of the So Fresh So Clean Web App](https://github.com/fraulueneburg/so-fresh-so-clean/assets/122455194/c40dd106-6b0b-472f-94ee-b1bd22100020)
 
 
 # The most German app ever!
