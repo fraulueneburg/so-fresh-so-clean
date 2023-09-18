@@ -3,7 +3,7 @@
 
 # The most German app ever!
 
-### <span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sofreshsoclean.adaptable.app](https://https://sofreshsoclean.adaptable.app/)
+### <span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sofreshsoclean.adaptable.app](https://sofreshsoclean.adaptable.app/)
 
 <br />
 
@@ -13,7 +13,8 @@ Why build something cool and fun when you can build something truly evil? That�
 
 So we built the thing that made everyone think we were <strong><u>so</u></strong> not fun: A cleaning app for shared flats! Complete with all the CRUD operations and a special bonus feature: If you don’t complete your tasks on time, you will be shamed by a sad animal and a passive-agressive message (we sincerely wish this one wasn’t based on a true story).
 
-Ready to join the dark side? [View our demo here](https://https://sofreshsoclean.adaptable.app/).
+Ready to join the dark side? [View our demo here](https://sofreshsoclean.adaptable.app/).<br />
+Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/RonnySk) – the Mister Clean of Node.js.
 
 ## Features
 
@@ -24,7 +25,7 @@ Ready to join the dark side? [View our demo here](https://https://sofreshsoclean
 - <span aria-hidden="true">😿&nbsp;&nbsp; </span>BONUS: A passive-aggressive message and a sad baby animal shame you about due/missed tasks
 - <span aria-hidden="true">👌&nbsp;&nbsp; </span>BONUS: If you did complete your tasks on time, you will get a random cleaning tip.
 
-## Some evil feature ideas (because we’re really bad people)
+## Some Evil Feature Ideas (because we’re really bad people)
 
 - <span aria-hidden="true">😈&nbsp;&nbsp; </span>ratings: leave a public review of your flatmate’s cleaning skills on their profile
 - <span aria-hidden="true">😈&nbsp;&nbsp; </span>paypal-integration: automatically get charged a fixed sum if you didn’t complete your tasks on time
@@ -40,16 +41,14 @@ Ready to join the dark side? [View our demo here](https://https://sofreshsoclean
 
 ## Demo
 
-<span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sofreshsoclean.adaptable.app](https://https://sofreshsoclean.adaptable.app/)
+<span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sofreshsoclean.adaptable.app](https://sofreshsoclean.adaptable.app/)
 
 ## About
 
 I’m Wiebke, a Full Stack Web Developer and UI/UX Designer, currently living in Hamburg, Germany.  
 Usability is a top priority in my work and I am also strongly advocating for (and keep learning about) web accessibility.
 
-This project was build together with my most wonderful teammate, [Ronny Skaraboto](https://github.com/RonnySk) – the Mister Clean of Node.js.
-
-## Like this project? <br />Let’s connect:
+## Like this project? Let’s connect:
 
 <a href="https://linkedin.com/in/fraulueneburg" target="_blank">
 <img alt="LinkedIn" src="https://img.shields.io/badge/-linkedin-1572B6?&style=for-the-badge&logo=css3&logoColor=white" />
