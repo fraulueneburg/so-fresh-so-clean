@@ -1,20 +1,26 @@
+extra
+
+- reset isdone status of tasks on Sunday midnight (or when not updated for the past 7 days?)
+- random cleaning tipp (wiebke)
+- error message when trying to delete flat owner
+
 edit flat
+
 - ~~name~~
 - ~~flatmates~~
 - ~~delete flatmate~~
 - ~~delete flat (admin only)~~
 
 edit tasks
+
 - ~~check/uncheck state (only for current user)~~
 - ~~delete (admin only?)~~
 
 create flat
+
 - ~~when you create a flat, you should automatically be inside~~.
 
 extra
-- reset isdone status of tasks on Sunday midnight (or when not updated for the past 7 days?)
-- random cleaning tipp (wiebke)
-- error message when trying to delete flat owner
 
 - ~~catch errors (i.e. when creating nameless flat)~~
 - ~~bugfix: update profile not possible with empty profile pic (wiebke)~~
@@ -26,4 +32,3 @@ extra
 - ~~separate routes files~~
 - ~~announcement with random cleaning tip /sad animal on Saturday if tasks are not done~~
 - ~~option for more than one flat? multiple flat?~~
-
