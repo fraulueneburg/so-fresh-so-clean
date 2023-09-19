@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Why build something cool and fun when you can build something truly evil? That’s what my project partner, [Ronny Skaraboto](https://github.com/RonnySk) and I asked ourselves when planning our second app project during the Ironhack 2023 Web Development Bootcamp.
+Why build something cool and fun when you can build something truly evil? That’s what my project partner Ronny and I asked ourselves when planning our second app project during the Ironhack 2023 Web Dev Bootcamp.
 
 So we built the thing that made everyone think we were <strong><u>so</u></strong> not fun: A cleaning app for shared flats! Complete with all the CRUD operations and a special bonus feature: If you don’t complete your tasks on time, you will be shamed by a sad animal and a passive-agressive message (we sincerely wish this one wasn’t based on a true story).
 
