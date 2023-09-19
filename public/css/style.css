@@ -629,3 +629,16 @@ header .btn-group {
 .btn-delete-flatmate:active {
 	background-color: transparent;
 }
+
+.alert {
+	border-radius: var(--border-radius-std);
+	border: 2px solid currentColor;
+	color: currentColor;
+	font-size: 1rem;
+	display: block;
+	padding: 0.75rem 0.5rem;
+}
+
+.alert-secondary {
+	color: var(--color-secondary);
+}
