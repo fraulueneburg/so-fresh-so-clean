@@ -3,8 +3,9 @@
 <form action="/signup" method="post" enctype="multipart/form-data">
   <input type="text" name="username" value="" placeholder="Name" required />
   <input type="email" name="email" value="" placeholder="Email" required />
-  <input type="password" name="password" value="" placeholder="*********" required />
-  <input type="file" name="imageUrl" accept="image/png, image/jpg" />
+  <input type="password" name="password" value="" placeholder="Password" required />
+  <label for="profilePicture">Profile Picture</label>
+  <input type="file" id="profilePicture" name="imageUrl" accept="image/png, image/jpg" />
   <input type="submit" value="Create User" />
   <p class="text-center">✨✨✨ <em>Let the cleaning fun begin!</em> ✨✨✨</p>
 </form>
