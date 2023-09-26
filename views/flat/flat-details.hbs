@@ -7,7 +7,7 @@
     </h1>
 </section>
 <section>
-    <h2 class="edit-mode-hidden">Your current flat:</h2>
+    <h2 class="edit-mode-hidden">Your current flat</h2>
     {{#if flat}}
         <p class="edit-mode-hidden">{{flat.name}}</p>
         <form class="edit-mode-show" action="/flat/{{flat._id}}/update" method="post">
@@ -30,7 +30,9 @@
         <select name="flatMembers" required>
             <option value="placeholder" disabled selected hidden>select person</option>
             {{#each flat.users}}
-                <option value="{{id}}">{{username}}</option>
+                <option value="{{id}}">
+                    {{username}}
+                </option>
             {{/each}}
         </select>
         <button type="submit" class="btn">update admin</button>
@@ -38,10 +40,10 @@
 </section>
 {{/if}}
 <section>
-    <h2>Your flatmates:</h2>
+    <h2>Flatmates</h2>
         <ul class="list-flatmates unstyled">
            {{#each flat.users}}
-                <li>
+                <li class="{{#ifequal id ../flat.owner}}admin{{/ifequal}} {{#ifequal id ../userFromSession.id}}current-user{{/ifequal}}">
                     <figure class="user">
                         {{#if ImgUrl}}
                             <img src="{{ImgUrl}}" alt="{{username}}" />
@@ -50,16 +52,18 @@
                         {{/if}}
                         <figcaption class="name">{{username}}</figcaption>
                     </figure>
-                    <form class="edit-mode-show delete-flatmate" action="/flat/{{../flat._id}}/user/{{_id}}/delete" method="post">
-                        <button type="submit" class="btn btn-delete-flatmate">delete flatmate</button>
-                    </form>
+                    {{#ifnotequal id ../flat.owner}}
+                        <form class="edit-mode-show delete-flatmate" action="/flat/{{../flat._id}}/user/{{_id}}/delete" method="post">
+                            <button type="submit" class="btn btn-delete-flatmate">delete flatmate</button>
+                        </form>
+                    {{/ifnotequal}}
                 </li>
             {{/each}}
             <li class="edit-mode-show"><a href="/flat/{{flat._id}}/add-flatmate" class="btn btn-add-flatmate">add flatmate</a></li>
         </ul>
 </section>
 <section>
-    <h2>This week’s tasks:</h2>
+    <h2>This week’s tasks</h2>
     {{#if updatedTasks}}
         <div class="card">
             {{#if hasOverdueTasks}}
@@ -94,7 +98,7 @@
         </div>
         <ul class="list-tasks">
             {{#each updatedTasks}}
-                <li>
+                <li {{#if isOwner}}class="current-user"{{/if}}>
                     <figure class="user">
                         {{#if user.ImgUrl}}
                             <img src="{{user.ImgUrl}}" alt="{{username}}" />
@@ -121,9 +125,9 @@
                             </form>
                         {{else}}
                             {{#if this.isDone}}
-                                <div class="task-status">✅</div>
+                                <div class="task-status status-done">✅</div>
                             {{else}}
-                                <div class="task-status">🔲</div>
+                                <div class="task-status status-undone">🔲</div>
                             {{/if}}
                         {{/if}}
                     </div>

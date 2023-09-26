@@ -93,7 +93,7 @@ h1.profile-header img {
 	display: block;
 	margin-right: var(--base-spacing);
 	flex: 0 0 100px;
-	height: 100px;
+	height: 100%;
 	object-fit: cover;
 }
 
@@ -153,6 +153,12 @@ p {
 	gap: var(--base-spacing);
 	padding: calc(var(--base-spacing) * 1.5);
 	font-size: 1.3rem;
+}
+
+@media (max-width: 649px) {
+	.card {
+		flex-direction: column;
+	}
 }
 
 .card p:last-of-type {
@@ -225,7 +231,7 @@ header {
 
 .nav-main ul {
 	display: flex;
-	column-gap: var(--base-spacing);
+	column-gap: calc(var(--base-spacing) * 1.5);
 	line-height: 3rem;
 	margin: 0;
 	padding: 0;
@@ -306,7 +312,11 @@ figure.user img {
 
 figure.user figcaption {
 	font-size: 1.2rem;
-	margin: 1rem auto 0;
+	margin: 0.5rem auto 0;
+}
+
+.current-user figure.user figcaption {
+	font-weight: bold;
 }
 
 /* list flatmates */
@@ -320,8 +330,48 @@ figure.user figcaption {
 
 .list-flatmates li {
 	flex: 0 0 calc((100% / 6) - (var(--base-spacing) * 5 / 6));
-
 	position: relative;
+}
+
+.list-flatmates li.admin,
+.list-flatmates li.current-user {
+	font-weight: bold;
+}
+
+.list-flatmates li.current-user {
+	color: var(--color-primary);
+	order: -1;
+}
+
+.list-flatmates li.admin {
+	color: var(--color-secondary);
+	order: -2;
+}
+
+.list-flatmates li.admin img,
+.list-flatmates li.current-user img {
+	border: 4px solid currentColor;
+}
+
+.list-flatmates li.admin figure:after,
+.list-flats li.is-admin a:after {
+	background-color: var(--color-secondary);
+	border-radius: 4px;
+	color: var(--color-white);
+	content: 'Admin';
+	display: inline-block;
+	font-size: 0.8rem;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+	margin: -0.5rem auto 0;
+	padding: 0.15rem 0.5rem 0.1rem;
+	text-transform: uppercase;
+	position: relative;
+	top: -0.25rem;
+}
+
+.list-flats li.is-admin a:after {
+	margin: 0 0 0 0.5rem;
 }
 
 .list-flatmates .user {
@@ -362,6 +412,30 @@ figure.user figcaption {
 
 .list-tasks {
 	padding-left: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.list-tasks li.current-user {
+	order: -1;
+}
+
+.list-tasks li.admin figure img {
+	color: var(--color-secondary);
+	border: 4px solid currentColor;
+}
+
+.list-tasks li.current-user figure img {
+	color: var(--color-primary);
+	border: 4px solid currentColor;
+}
+
+.list-tasks li.admin figure figcaption {
+	color: var(--color-secondary);
+}
+
+.list-tasks li.current-user figure figcaption {
+	color: var(--color-primary);
 }
 
 .list-tasks li {
@@ -383,7 +457,19 @@ figure.user figcaption {
 }
 
 .list-tasks li .status .task-status {
-	padding: calc(var(--base-spacing));
+	border-radius: var(--border-radius-std);
+	padding: var(--base-spacing);
+	height: 1.9rem;
+	width: 1.9rem;
+	text-align: center;
+}
+
+.task-status.status-done {
+	background-color: var(--color-tertiary);
+}
+
+.task-status.status-undone {
+	background-color: var(--color-secondary);
 }
 
 .list-tasks .btn-update-task {
@@ -540,9 +626,6 @@ header .btn-login {
 	line-height: 1.2;
 }
 
-header .btn-group {
-}
-
 /*----- BUTTONS EDIT MODE -----*/
 
 .edit-mode-show,
@@ -557,6 +640,7 @@ header .btn-group {
 .btn-add-flatmate {
 	border: 2px solid currentColor;
 	border-radius: 50%;
+	font-weight: normal;
 	height: 80px;
 	padding: 0;
 	position: relative;
@@ -585,7 +669,7 @@ header .btn-group {
 	display: block;
 	font-size: 4rem;
 	height: 100%;
-	line-height: 4.5rem;
+	line-height: 4.65rem;
 	text-indent: 0;
 	width: 100%;
 }
@@ -621,7 +705,7 @@ header .btn-group {
 	border-radius: 50%;
 	top: 0;
 	right: 0px;
-	line-height: 1.4;
+	line-height: 1.6;
 }
 
 .btn-delete-flatmate:hover,
