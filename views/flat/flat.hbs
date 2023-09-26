@@ -6,11 +6,14 @@
 </section>
 
 <section>
-  <h2>Your Flats</h2>
+  <h2>
+    <span class="supline">Overview</span>
+    Your Flats
+  </h2>
   {{#if allFlats}}
     <ul class="list-flats">
       {{#each allFlats}}
-        <li><a href="/flat/{{_id}}">{{name}}</a></li>
+        <li {{#ifequal owner ../userFromSession.id}}class="is-admin"{{/ifequal}}><a href="/flat/{{_id}}">{{name}}</a></li>
       {{/each}}
     </ul>
   {{else}}
@@ -24,12 +27,24 @@
   <form action="/create-flat" method="post">
     <label for="flatName">Flat name</label>
     <input type="text" name="flatName" placeholder="choose something cool" required />
-    <label for="flatmembers">Choose flatmates</label>
-    <select name="flatMembers" id="flatmembers" multiple>
-      {{#each allUsers}}
-        <option value="{{_id}}">{{username}}</option>
-      {{/each}}
-    </select>
+    <fieldset>
+      <legend>Choose flatmates</legend>
+      <div class="list-checkboxes">
+        <ul>
+          {{#each allUsers}}
+            <li>
+              <label for="check-{{_id}}">
+                <input type="checkbox" name="flatMembers" value="{{_id}}" id="check-{{_id}}" />
+                <figure class="user" aria-hidden="true">
+                  <img src="{{#if ImgUrl}}{{ImgUrl}}{{else}}/images/sad-kitten.jpg{{/if}}" alt="{{username}}’s profile picture" />
+                  <figcaption class="name">{{username}}</figcaption>
+                </figure>
+              </label>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </fieldset>
     <button>Create flat</button>
   </form>
   {{#if error}}

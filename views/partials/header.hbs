@@ -1,12 +1,6 @@
 <header>
     {{#if userFromSession}}
         <a class="logo" href="/flat">🧼</a>
-        <nav class="nav-main">
-            <ul>
-                <li><a href="/flat">Your flats</a></li>
-                <li><a href="/about">About</a></li>
-            </ul>
-        </nav>
         <div class="btn-group">
             {{#if userIsAdmin}}
             <button class="toggle-edit-mode" aria-label="Edit flat">
@@ -17,7 +11,10 @@
                 <img src="/images/icon-user-white.svg" width="32" height="32" alt="">
                 </a>
             <form action="/logout" method="post">
-                <button type="submit">Logout</button>
+                <button type="submit" class="btn-logout">
+                    <img src="/images/icon-power-off.svg" width="32" height="32" alt="">
+                    <span>Logout</span>
+                </button>
             </form>
         </div>
     {{else}}
