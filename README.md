@@ -2,7 +2,7 @@
 
 # The most German app ever!
 
-### <span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sofreshsoclean.adaptable.app](https://sofreshsoclean.adaptable.app/)
+### <span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[so-fresh-so-clean.onrender.com](https://so-fresh-so-clean.onrender.com/)
 
 <br />
 
@@ -12,7 +12,7 @@ Why build something cool and fun when you can build something truly evil? That�
 
 So we built the thing that made everyone think we were the worst: A cleaning schedule app for shared flats! Complete with all the CRUD operations and a special bonus feature: If you didn’t complete your tasks on time, you will be shamed by a sad animal and a passive-agressive message (we sincerely wish this one wasn’t based on a true story).
 
-Ready to join the dark side? [View our demo here](https://sofreshsoclean.adaptable.app/).<br />
+Ready to join the dark side? [View our demo here](https://so-fresh-so-clean.onrender.com/).<br />
 Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/RonnySk) – the Mister Clean of Node.js.
 
 ## Features
@@ -40,7 +40,7 @@ Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/Ron
 
 ## Demo
 
-<span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sofreshsoclean.adaptable.app](https://sofreshsoclean.adaptable.app/)
+<span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[so-fresh-so-clean.onrender.com](https://so-fresh-so-clean.onrender.com/)
 
 ## About
 
