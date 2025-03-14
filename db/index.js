@@ -14,7 +14,7 @@ mongoose
 		console.log(`Connected to Mongo! Database name: "${databaseName}"`)
 	})
 	.catch((err) => {
-		console.error('Error connecting to mongo: ', err)
+		console.error('Error connecting to Mongo: ', err)
 	})
 
 module.exports = { MONGO_URI }
