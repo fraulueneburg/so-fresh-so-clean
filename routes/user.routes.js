@@ -1,30 +1,30 @@
-const bcryptjs = require('bcryptjs');
-const router = require('express').Router();
-const isLoggedIn = require('../middlewares/isLoggedIn');
-const User = require('../models/User.model');
-const Flat = require('../models/Flat.model');
-const uploader = require('../middlewares/cloudinary.config.js');
+const bcryptjs = require('bcryptjs')
+const router = require('express').Router()
+const isLoggedIn = require('../middlewares/isLoggedIn')
+const User = require('../models/User.model')
+const Flat = require('../models/Flat.model')
+const uploader = require('../middlewares/cloudinary.config.js')
 
 // about page route
 
 router.get('/about', (req, res) => {
-	res.render('about');
-});
+	res.render('about')
+})
 
 // signup route
 
 router.get('/signup', (req, res) => {
-	res.render('auth/signup');
-});
+	res.render('auth/signup')
+})
 
 router.post('/signup', uploader.single('imageUrl'), async (req, res, next) => {
 	try {
-		const salt = await bcryptjs.genSalt(12);
-		const hash = await bcryptjs.hash(req.body.password, salt);
-		let imgUrl;
+		const salt = await bcryptjs.genSalt(12)
+		const hash = await bcryptjs.hash(req.body.password, salt)
+		let imgUrl
 
 		if (req.file) {
-			imgUrl = req.file.path;
+			imgUrl = req.file.path
 		}
 
 		const newUser = await User.create({
@@ -32,68 +32,73 @@ router.post('/signup', uploader.single('imageUrl'), async (req, res, next) => {
 			email: req.body.email,
 			password: hash,
 			ImgUrl: imgUrl,
-		});
-		await newUser.save();
-		res.render('auth/login', newUser);
+		})
+		await newUser.save()
+
+		req.session.user = {
+			id: newUser._id,
+			name: newUser.username,
+			ImgUrl: newUser.ImgUrl,
+		}
+
+		res.redirect('/flat')
 	} catch (err) {
-		next(err);
+		next(err)
 	}
-});
+})
 
 //login route
 
 router.get('/login', (req, res) => {
-	res.render('auth/login');
-});
+	res.render('auth/login')
+})
 
 router.post('/login', async (req, res, next) => {
 	try {
-		const user = await User.findOne({ email: req.body.email });
+		const user = await User.findOne({ email: req.body.email })
 		if (!user) {
-			return res.render('auth/login', { error: 'User not existent!' });
+			return res.render('auth/login', { error: 'User not existent!' })
 		}
-		const passwordsMatch = await bcryptjs.compare(req.body.password, user.password);
+		const passwordsMatch = await bcryptjs.compare(req.body.password, user.password)
 		if (!passwordsMatch) {
 			return res.render('auth/login', {
 				error: 'Sorry the password is incorrect!',
-			});
+			})
 		}
 
 		req.session.user = {
 			id: user._id,
 			name: user.username,
 			ImgUrl: user.ImgUrl,
-		};
+		}
 
-		res.redirect('/flat');
+		res.redirect('/flat')
 	} catch (err) {
-		next(err);
+		next(err)
 	}
-});
+})
 
 // user settings route
 
 router.get('/user/:userId', async (req, res, next) => {
 	try {
-		const { userId } = req.params;
-		const currentUser = await User.findById(userId);
-		res.render('user/user-settings', { currentUser });
+		const { userId } = req.params
+		const currentUser = await User.findById(userId)
+		res.render('user/user-settings', { currentUser })
 	} catch (err) {
-		next(err);
+		next(err)
 	}
-});
+})
 
 router.post('/user/:userId/update', uploader.single('imageUrl'), async (req, res, next) => {
 	try {
-		// const salt = await bcryptjs.genSalt(12);
-		// const hash = await bcryptjs.hash(req.body.password, salt);
-		const userId = req.params.userId;
-		const currentUser = await User.findById({ _id: userId });
+		const userId = req.params.userId
+		const currentUser = await User.findById({ _id: userId })
 
-		let theImageUrl = currentUser.ImgUrl;
+		let theImageUrl = currentUser.ImgUrl
 
 		if (req.file) {
-			theImageUrl = req.file.path;
+			theImageUrl = req.file.path
 		}
 
 		const updatedUser = await User.findByIdAndUpdate(
@@ -104,78 +109,78 @@ router.post('/user/:userId/update', uploader.single('imageUrl'), async (req, res
 				ImgUrl: theImageUrl,
 			},
 			{ new: true }
-		);
+		)
 
 		req.session.user = {
 			id: userId,
 			name: updatedUser.username,
 			ImgUrl: theImageUrl,
-		};
+		}
 
-		res.redirect('/flat/');
+		res.redirect('/flat/')
 	} catch (err) {
-		next(err);
+		next(err)
 	}
-});
+})
 
 // delete user route
 
 router.get('/user/:userId/delete', isLoggedIn, async (req, res, next) => {
 	try {
-		const { userId } = req.params;
-		const currentUser = await User.findById(userId);
+		const { userId } = req.params
+		const currentUser = await User.findById(userId)
 
-		currentUsersFlats = await Flat.find({ owner: userId }).populate('users');
+		currentUsersFlats = await Flat.find({ owner: userId }).populate('users')
 
-		res.render('user/delete-user', { currentUser, currentUsersFlats });
+		res.render('user/delete-user', { currentUser, currentUsersFlats })
 	} catch (err) {
-		next(err);
+		next(err)
 	}
-});
+})
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 router.post('/user/:userId/delete', async (req, res, next) => {
 	try {
-		const { userId } = req.params;
+		const { userId } = req.params
 		deleteUserFromFlats = await Flat.updateMany(
 			{},
 			{ $pull: { users: { $in: [new mongoose.Types.ObjectId(userId)] } } },
 			{ new: true }
-		);
-		const userToDelete = await User.findByIdAndDelete({ _id: userId });
+		)
+		const userToDelete = await User.findByIdAndDelete({ _id: userId })
 
 		req.session.destroy((err) => {
 			if (err) {
-				next(err);
-				return;
+				next(err)
+				return
 			}
-			res.redirect('/goodbye');
-		});
+			res.redirect('/goodbye')
+		})
 	} catch (err) {
-		next(err);
+		next(err)
 	}
-});
+})
 
 // delete user successful route
 
 router.get('/goodbye', async (req, res, next) => {
 	try {
-		res.render('user/delete-user-success');
+		res.render('user/delete-user-success')
 	} catch (err) {
-		next(err);
+		next(err)
 	}
-});
+})
 
 // logout route
 
 router.post('/logout', (req, res, next) => {
 	req.session.destroy((err) => {
 		if (err) {
-			next(err);
-			return;
+			next(err)
+			return
 		}
-		res.redirect('/');
-	});
-});
+		res.redirect('/')
+	})
+})
 
-module.exports = router;
+module.exports = router
