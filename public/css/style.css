@@ -7,6 +7,7 @@
 	--color-secondary-hover: #09498a;
 	--color-tertiary: #29be7f;
 	--color-tertiary-hover: #249c6a;
+	--color-danger: var(--color-primary);
 
 	--color-white: #f9f9f9;
 	--color-text: #333;
@@ -877,6 +878,11 @@ header .btn-logout span {
 
 .alert-secondary {
 	color: var(--color-secondary);
+}
+
+.alert.error {
+	background-color: rgba(202, 2, 22, 0.15);
+	color: var(--color-danger);
 }
 
 /*----- BACK LINK -----*/
