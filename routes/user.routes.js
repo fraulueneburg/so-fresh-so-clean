@@ -57,12 +57,13 @@ router.post('/login', async (req, res, next) => {
 	try {
 		const user = await User.findOne({ email: req.body.email })
 		if (!user) {
-			return res.render('auth/login', { error: 'User not existent!' })
+			return res.render('auth/login', { error: 'Error: User does not exist.' })
 		}
 		const passwordsMatch = await bcryptjs.compare(req.body.password, user.password)
 		if (!passwordsMatch) {
 			return res.render('auth/login', {
-				error: 'Sorry the password is incorrect!',
+				error: 'Sorry, the password is incorrect.',
+				description: 'Typos happen to the best of us. Please try again.',
 			})
 		}
 
