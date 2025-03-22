@@ -4,6 +4,8 @@ const isLoggedIn = require('../middlewares/isLoggedIn')
 const User = require('../models/User.model')
 const Flat = require('../models/Flat.model')
 const uploader = require('../middlewares/cloudinary.config.js')
+const fs = require('fs')
+const path = require('path')
 
 // about page route
 
@@ -25,7 +27,21 @@ router.post('/signup', uploader.single('imageUrl'), async (req, res, next) => {
 
 		if (req.file) {
 			imgUrl = req.file.path
+		} else {
+			const imgFolder = path.resolve(__dirname, '../public/images/profile-placeholder')
+			const files = await fs.promises.readdir(imgFolder)
+			const imageFilesArr = files.filter((file) => /\.(jpg|jpeg|png|gif)$/i.test(file))
+
+			if (imageFilesArr.length === 0) {
+				console.log('No images found in the folder')
+				//imgUrl = '/images/default-placeholder.png'
+			} else {
+				const randomImage = imageFilesArr[Math.floor(Math.random() * imageFilesArr.length)]
+				imgUrl = `/images/profile-placeholder/${randomImage}`
+			}
 		}
+
+		console.log('imgUrl', imgUrl)
 
 		const newUser = await User.create({
 			username: req.body.username,
