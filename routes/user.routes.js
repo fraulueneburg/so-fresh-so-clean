@@ -32,20 +32,54 @@ router.post('/signup', uploader.single('imageUrl'), async (req, res, next) => {
 			const files = await fs.promises.readdir(imgFolder)
 			const imageFilesArr = files.filter((file) => /\.(jpg|jpeg|png|gif)$/i.test(file))
 
-			if (imageFilesArr.length === 0) {
-				console.log('No images found in the folder')
-				//imgUrl = '/images/default-placeholder.png'
-			} else {
+			if (imageFilesArr.length > 0) {
 				const randomImage = imageFilesArr[Math.floor(Math.random() * imageFilesArr.length)]
 				imgUrl = `/images/profile-placeholder/${randomImage}`
 			}
 		}
 
-		console.log('imgUrl', imgUrl)
-
 		const newUser = await User.create({
 			username: req.body.username,
 			email: req.body.email,
+			password: hash,
+			ImgUrl: imgUrl,
+		})
+		await newUser.save()
+
+		req.session.user = {
+			id: newUser._id,
+			name: newUser.username,
+			ImgUrl: newUser.ImgUrl,
+		}
+
+		res.redirect('/flat')
+	} catch (err) {
+		next(err)
+	}
+})
+
+// no-signup signup route
+
+router.post('/no-signup-signup', uploader.single('imageUrl'), async (req, res, next) => {
+	try {
+		const salt = await bcryptjs.genSalt(12)
+		const hash = await bcryptjs.hash(req.body.password, salt)
+		let imgUrl
+
+		const imgFolder = path.resolve(__dirname, '../public/images/profile-placeholder')
+		const files = await fs.promises.readdir(imgFolder)
+		const imageFilesArr = files.filter((file) => /\.(jpg|jpeg|png|gif)$/i.test(file))
+
+		if (imageFilesArr.length > 0) {
+			const randomImage = imageFilesArr[Math.floor(Math.random() * imageFilesArr.length)]
+			imgUrl = `/images/profile-placeholder/${randomImage}`
+		}
+
+		const randomNum = Math.floor(Math.random() * 10000)
+
+		const newUser = await User.create({
+			username: 'Manfred',
+			email: `manfred-${randomNum}@t-online.test`,
 			password: hash,
 			ImgUrl: imgUrl,
 		})
