@@ -2,17 +2,12 @@
 
 # The most German app ever!
 
-### <span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sfsc.fraulueneburg.de](https://sfsc.fraulueneburg.de/)
-
-<br />
-
 ## Introduction
 
 Why build something cool and fun when you can build something truly evil? That’s what my project partner Ronny and I asked ourselves when planning our second app project during the Ironhack Web Dev Bootcamp.
 
 So we built the thing that made everyone think we were the worst: A cleaning schedule app for shared flats! Complete with all the CRUD operations and a special bonus feature: If you didn’t complete your tasks on time, you will be shamed by a sad animal and a passive-agressive message (we sincerely wish this one wasn’t based on a true story).
 
-Ready to join the dark side? [View our demo here](https://sfsc.fraulueneburg.de/).<br />
 Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/RonnySk) – the Mister Clean of Node.js.
 
 ## Features
@@ -37,10 +32,6 @@ Shoutout to my most wonderful teammate, [Ronny Skaraboto](https://github.com/Ron
 - Express
 - MongoDB
 - _painful life experience of living in a flat with a very (!) rigid cleaning schedule_
-
-## Demo
-
-<span aria-hidden="true">👉&nbsp;&nbsp;</span>See the demo at&nbsp;&nbsp;[sfsc.fraulueneburg.de](https://sfsc.fraulueneburg.de/)
 
 ## About
 
